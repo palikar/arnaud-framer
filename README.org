@@ -1,0 +1,51 @@
+#+OPTIONS: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+OPTIONS: broken-links:nil c:nil creator:nil d:(not "LOGBOOK")
+#+OPTIONS: date:t e:t email:nil f:t inline:t num:t p:nil pri:nil
+#+OPTIONS: prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t
+#+OPTIONS: toc:nil todo:t |:t
+#+TITLE: README
+#+DATE: <2018-06-14 Thu>
+#+AUTHOR: Stanislav Arnaudov
+#+EMAIL: arnaud@localhost.localdomain
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.13)
+
+
+* Abstract
+A simple package implementing a mode that allows you to quickly resize the Emacs' windows in the current frame(inspired by [[https://en.wikipedia.org/wiki/Tiling_window_manager][tiling windows mangers]]). After activating the mode, you can use several functions that will intuitively resize the current window while respecting it relative position. By default the resizing is done with the arrow-keys. Resizing with the left arrow will grow or shrink the current windows depending to its relative position to other windows.
+* Dependencies
+There is a menu implemented in the *.el* file that is implemented with [[https://github.com/abo-abo/hydra][hydra]] so consider this the only dependency of the package.
+* Getting Started
+Works perfect on GNU Emacs version 26.1
+\\
+The "installation" is pretty standard for a package that is not on MELPA. Just clone the repository
+#+BEGIN_QUOTE
+git clone https://github.com/palikar/arnaud-framer
+#+END_QUOTE
+and load the /arnaud-framer.el/ file
+#+BEGIN_SRC emacs-lisp
+(load "~/path/to/arnaud-framer")
+#+END_SRC
+If the file is in your load-path you can require it with:
+#+BEGIN_SRC emacs-lisp
+(require 'arnaud-framer)
+#+END_SRC
+After that several things at your disposal for easy "framing" of your buffers.
+- =(framer-mode)= - activates the default keybindings on a buffer local level
+- =(global-framer-mode)= - activates the default keybindings on a global local level
+- The functions =framer-decrease-width=, =framer-increse-width=, =framer-decrease-height= and =framer-increse-height= which are pretty selfexplanatory.
+- The function =framer-hydra-menu= that pops up a menu that allows you to do the resizing in a somewhat of a obvious way.
+The other function that you'll find are...non of your concern.
+
+* Preferred (by me) keybindings
+By default, upon the activation of the mode, with the keybindings of the key-map you can resize windows with =S-<up>/<down>/<left>/<right>=. /Up/ and /down/ control the height and /left/ and /right/ control the width of the window.
+/Note:/ Myeah, I don't really use shift selection as a..."Еmacs power-user" if you will. 
+\\
+=C-c h 5= Opens the menu for resizing. From there you can again work with the arrow keys and close the menu either with =q= or with anything else that is now a button of the menu.
+* Customization
+The package defines one custom - =resizing-step= - that controls how big the resizing "jumps" are. The default value is 50 and it works pretty fine.
+/Note:/ The value of =resizing-step= is in pixels.
+* To-do                                                            :noexport:
+** TODO Integrate the custom resize step

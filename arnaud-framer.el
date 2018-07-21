@@ -31,10 +31,6 @@
 
 (require 'hydra)
 
-(defcustom resizing-step 50
-  "The amount with which the dimmension of the current windows will be decreased/increased."
-  :type 'integer
-  :group 'framer)
 
 
 (defvar framer-mode-hook nil)
@@ -65,12 +61,12 @@
   "Make the current frame smaller in width."
   (interactive)
   (cond
-   ((equal "left" (win-resize-left-or-right))
-    (if (window-resizable nil -50 t nil t)
-        (window-resize nil -50 t nil t)))
    ((equal "right" (win-resize-left-or-right))
     (if (window-resizable nil 50 t nil t)
         (window-resize nil 50 t nil t)))
+   ((equal "left" (win-resize-left-or-right))
+    (if (window-resizable nil -50 t nil t)
+        (window-resize nil -50 t nil t)))
    (t (if (window-resizable nil -50 t nil t)
           (window-resize nil -50 t nil t))))
   )
@@ -79,15 +75,17 @@
   "Make the current frame smaller in width."
   (interactive)
   (cond
-   ((equal "left" (win-resize-left-or-right))
+   ((equal "right" (win-resize-left-or-right))
     (if (window-resizable nil -50 t nil t)
         (window-resize nil -50 t nil t)))
-   ((equal "right" (win-resize-left-or-right))
+   ((equal "left" (win-resize-left-or-right))
     (if (window-resizable nil 50 t nil t)
         (window-resize nil 50 t nil t)))
-   (t (if (window-resizable nil -50 t nil t)
-          (window-resize nil -50 t nil t))))
+   (t (if (window-resizable nil 50 t nil t)
+          (window-resize nil 50 t nil t))))
   )
+
+
 
 
 (defun framer-decrease-height ()
@@ -147,6 +145,10 @@
   :group framer)
 
 
+(defcustom resizing-step 50
+  "The amount with which the dimmension of the current windows will be decreased/increased."
+  :type 'integer
+  :group 'framer)
 
 (defhydra framer-menu (:color red :hint nil)
   "
